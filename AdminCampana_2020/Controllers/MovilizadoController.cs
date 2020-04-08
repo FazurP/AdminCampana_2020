@@ -38,7 +38,7 @@ namespace AdminCampana_2020.Controllers
             var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
             if (!identity.IsInRole("Administrador"))
             {
-                ViewData["DireccionVM.IdColonia"] = new SelectList(IcoloniaBusiness.GetColonias(), "id", "strAsentamiento");
+                ViewData["Direccion.IdColonia"] = new SelectList(IcoloniaBusiness.GetColonias(), "id", "strAsentamiento");
                 return View();
             }
             return RedirectToAction("Registros","Movilizado");
@@ -128,7 +128,7 @@ namespace AdminCampana_2020.Controllers
                     movilizadoDomainModel = ImovilizadoBusiness.GetMovilizadoById(id);
                     movilizadoVM = new MovilizadoVM();
                     AutoMapper.Mapper.Map(movilizadoDomainModel, movilizadoVM);
-                    ViewData["DireccionDomainModel.IdColonia"] = new SelectList(IcoloniaBusiness.GetColonias(), "id", "strAsentamiento");
+                    ViewData["Direccion.IdColonia"] = new SelectList(IcoloniaBusiness.GetColonias(), "id", "strAsentamiento");
                     return PartialView("_Update", movilizadoVM);
                 case 3:
                     movilizadoDomainModel = ImovilizadoBusiness.GetMovilizadoById(id);

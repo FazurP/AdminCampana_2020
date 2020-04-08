@@ -365,6 +365,7 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\js\plugins\jquery\jquery-3.4.1.min.js" />
     <Content Include="Content\js\validaciones.js" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -379,12 +380,10 @@
     <Content Include="App_Browsers\qt.browser" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.7-vsdoc.js" />
-
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
     <Content Include="Rotativa\help-wkhtmltopdf.txt" />
     <Content Include="Rotativa\wkhtmltoimage.exe" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
-
     <Content Include="Scripts\DataTableJs\dataTables.bootstrap.js" />
     <Content Include="Scripts\DataTableJs\dataTables.bootstrap.min.js" />
     <Content Include="Scripts\DataTableJs\dataTables.bootstrap4.js" />
@@ -404,7 +403,6 @@
     <Content Include="Scripts\DataTableJs\jquery.dataTables.js" />
     <Content Include="Scripts\DataTableJs\jquery.dataTables.min.js" />
     <Content Include="Scripts\DataTableJs\jquery.js" />
-
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -508,7 +506,6 @@
     <Content Include="Views\Movilizado\_Drop.cshtml" />
     <Content Include="Views\Usuario\_Drop.cshtml" />
     <Content Include="Views\Usuario\_Update.cshtml" />
-
     <Content Include="Views\Graficas\p_General.cshtml" />
     <Content Include="Views\Graficas\p_Multinivel.cshtml" />
     <Content Include="Views\Graficas\p_Planilla.cshtml" />
@@ -519,13 +516,11 @@
     <Content Include="Views\AgendaActividades\_Agenda.cshtml" />
     <Content Include="Views\AgendaActividades\_Agregar.cshtml" />
     <Content Include="Views\AgendaActividades\_Editar.cshtml" />
-
     <Content Include="Views\Account\RecoveryPassword.cshtml" />
     <Content Include="Views\Account\SuccessRecoveryPassword.cshtml" />
     <Content Include="Views\Error\DuplicateData.cshtml" />
     <Content Include="Views\Error\NoEmailRecovery.cshtml" />
     <Content Include="Views\Manager\Visualizacion.cshtml" />
-
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -551,15 +546,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-
     <Compile Include="ViewModels\AgendaActividadesVM.cs" />
-
     <Compile Include="Recursos\RecursosAdmin.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RecursosAdmin.resx</DependentUpon>
     </Compile>
-
     <Compile Include="ViewModels\ColoniaVM.cs" />
     <Compile Include="ViewModels\DireccionVM.cs" />
     <Compile Include="ViewModels\EmailVM.cs" />
@@ -688,7 +680,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_ControlSidebar.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

@@ -537,16 +537,16 @@ namespace AdminCampana_2020.Business
                             movilizado.StrApellidoMaterno = m.strApellidoMaterno;
                             movilizado.IdUsuario = m.idUsuario.Value;
                             //movilizado.I = m.idDireccion;
-                            movilizado.DireccionDomainModel = new DireccionDomainModel();//creamos la direccion  de forma vacia para ser llenada
-                            movilizado.DireccionDomainModel.StrCalle = m.Direccion.strCalle;
-                            movilizado.DireccionDomainModel.StrNumeroInterior = m.Direccion.strNumeroInterior;
-                            movilizado.DireccionDomainModel.IdColonia = m.Direccion.idColonia.Value;
-                            movilizado.DireccionDomainModel.ColoniaDomainModel = new ColoniaDomainModel();
-                            movilizado.DireccionDomainModel.ColoniaDomainModel.StrCodigoPostal = m.Direccion.Colonia.strCodigoPostal.Value.ToString();
-                            movilizado.DireccionDomainModel.ColoniaDomainModel.StrTipoDeAsentamiento = m.Direccion.Colonia.strTipoDeAsentamiento;
-                            movilizado.DireccionDomainModel.ColoniaDomainModel.StrAsentamiento = m.Direccion.Colonia.strAsentamiento;
-                            movilizado.TelefonoDomainModel = new TelefonoDomainModel();
-                            movilizado.TelefonoDomainModel.StrNumeroCelular = m.Telefono.strNumeroCelular;
+                            movilizado.Direccion = new DireccionDomainModel();//creamos la direccion  de forma vacia para ser llenada
+                            movilizado.Direccion.StrCalle = m.Direccion.strCalle;
+                            movilizado.Direccion.StrNumeroInterior = m.Direccion.strNumeroInterior;
+                            movilizado.Direccion.IdColonia = m.Direccion.idColonia.Value;
+                            movilizado.Direccion.ColoniaDomainModel = new ColoniaDomainModel();
+                            movilizado.Direccion.ColoniaDomainModel.StrCodigoPostal = m.Direccion.Colonia.strCodigoPostal.Value.ToString();
+                            movilizado.Direccion.ColoniaDomainModel.StrTipoDeAsentamiento = m.Direccion.Colonia.strTipoDeAsentamiento;
+                            movilizado.Direccion.ColoniaDomainModel.StrAsentamiento = m.Direccion.Colonia.strAsentamiento;
+                            movilizado.Telefono = new TelefonoDomainModel();
+                            movilizado.Telefono.StrNumeroCelular = m.Telefono.strNumeroCelular;
                             movilizados.Add(movilizado);//agregamos el movilizado a la lista
                         }
 

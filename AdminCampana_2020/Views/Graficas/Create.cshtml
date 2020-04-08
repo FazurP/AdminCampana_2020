@@ -1,370 +1,82 @@
-
 ﻿@using System.Security.Claims
 @using System.Threading
 
 @{
     var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
-    }
+}﻿
+<!--Load the AJAX API-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
+<noscript>
+    <meta http-equiv="refresh" content="0;URL=@Url.Action("NoScript", "Error")" />
+</noscript>
+<div class="bs-container" style="min-height:960px;">
+    <section class="content-header">
+        <h1>
+            Dashboard
+            <small>(Admin)</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"> <i class="fa fa-dashboard"></i> Inicio </a></li>
+            <li> <a href="#">Analisis</a></li>
+            <li class="active"> Graficas </li>
+        </ol>
+    </section>
+    <br />
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h5 class="box-title">
+                        <label class="text-success emailtitleletter">
 
-﻿
-    <!--Load the AJAX API-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                            <i class="text-success"></i>
+                            Bienvenido:  @identity.Claims.Where(p => p.Type == "FullName").Select(p => p.Value).FirstOrDefault()
 
-    <noscript>
-        <meta http-equiv="refresh" content="0;URL=@Url.Action("NoScript", "Error")" />
-    </noscript>
-    <div class="bs-container" style="min-height:960px;">
-        <section class="content-header">
-            <h1>
-                Dashboard
-                <small>(Admin)</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"> <i class="fa fa-dashboard"></i> Inicio </a></li>
-                <li> <a href="#">Analisis</a></li>
-                <li class="active"> Graficas </li>
-            </ol>
-        </section>
-        <br />
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="box box-success">
-                    <div class="box-header with-border">
-                        <h5 class="box-title">
-                            <label class="text-success emailtitleletter">
+                        </label>
 
-                                <i class="text-success"></i>
-                                Bienvenido:  @identity.Claims.Where(p => p.Type == "FullName").Select(p => p.Value).FirstOrDefault()
-
-                            </label>&nbsp;
-
-                        </h5>
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                        </div>
+                    </h5>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
                     </div>
-                    <div class="box-body">
-                        <div class="form-group">
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
 
-                            <div class="row">
-                                @Html.Partial("p_General")
-                                @*<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <div class="panel-title">
-                                                Progreso General
+                        <div class="row">
+                            @Html.Partial("p_General")
+                        </div>
 
-                                            </div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <canvas id="chLineMetas" style="height:100px;"></canvas>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                                    <canvas id="chRadarMetas" style="height:100px;"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
+                        <div class="row">
+                            @Html.Partial("p_Multinivel")
 
 
-                                </div>*@
-
-                            </div>
-
-                            <div class="row">
-                                @Html.Partial("p_Multinivel")
-                                @*<div class="col-lg-3">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <div class="panel-title">
-                                                Progreso de Multinivel
-                                            </div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <canvas id="chBarMultinivel" style="width:50px;height:60px;"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <div class="panel-title">
-                                                Cumplimiento de Multinivel
-                                            </div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <h4 class="control-sidebar-subheading">
-                                                Progreso
-                                                <span class="pull-right-container">
-                                                    <span class="label label-danger pull-right" id="metaMultinivel"></span>
-                                                </span>
-                                            </h4>
-                                            <div class="progress progress-xxs">
-                                                <div class="progress-bar progress-bar-danger" id="progresoMultinivel">
-                                                </div>
-                                            </div>
-                                            Prioridad
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxRedMultinivel" title="Prioridad Alta">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxYellowMultinivel" title="Prioridad Media">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxGreenMultinivel" title="Prioridad Baja">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>*@
-
-                                @Html.Partial("p_Planilla")
-                                @*<div class="col-lg-3">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <div class="panel-title">
-                                                Progreso de Planilla Ganadora
-                                            </div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <canvas id="chBarPlanillaGanadora" style="width:50px;height:60px;"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <div class="panel-title">
-                                                Cumplimiento de Planilla Ganadora
-                                            </div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <h4 class="control-sidebar-subheading">
-                                                Progreso
-
-                                                <span class="pull-right-container">
-                                                    <span class="label label-danger pull-right" id="metaPlanilla"></span>
-                                                </span>
-                                            </h4>
-                                            <div class="progress progress-xxs">
-                                                <div class="progress-bar progress-bar-danger" id="progresoPlanilla">
-
-                                                </div>
-                                            </div>
-                                            Prioridad
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxRedPlantilla" title="Prioridad Alta">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxYellowPlantilla" title="Prioridad Media">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxGreenPlantilla" title="Prioridad Baja">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>*@
-
-                            </div>
-
-                            <div class="row">
-                                @Html.Partial("p_Campania")
-                                @*<div class="col-lg-3">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <div class="panel-title">
-                                                Progreso de Campaña
-                                            </div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <canvas id="chBarCampaña" style="width:50px;height:60px;"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <div class="panel-title">
-                                                Cumplimiento de Campaña
-                                            </div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <h4 class="control-sidebar-subheading">
-                                                Progreso
-
-                                                <span class="pull-right-container">
-                                                    <span class="label label-danger pull-right" id="metaCampaña"></span>
-                                                </span>
-                                            </h4>
-                                            <div class="progress progress-xxs">
-                                                <div class="progress-bar progress-bar-danger" id="progresoCampaña">
-
-                                                </div>
-                                            </div>
-                                            Prioridad
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxRedCampaña" title="Prioridad Alta">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxYellowCampaña" title="Prioridad Media">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxGreenCampaña" title="Prioridad Baja">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>*@
-
-                                @Html.Partial("p_EnCampania")
-                                @*<div class="col-lg-3">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <div class="panel-title">
-                                                Progreso de en Campaña
-                                            </div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <canvas id="chBarEnCampaña" style="width:50px;height:60px;"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <div class="panel-title">
-                                                Cumplimiento de en Campaña
-                                            </div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <h4 class="control-sidebar-subheading">
-                                                Progreso
-
-                                                <span class="pull-right-container">
-                                                    <span class="label label-danger pull-right" id="metaEnCampaña"></span>
-                                                </span>
-                                            </h4>
-                                            <div class="progress progress-xxs">
-                                                <div class="progress-bar progress-bar-danger" id="progresoEnCampaña">
-
-                                                </div>
-                                            </div>
-                                            Prioridad
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxRedEnCampaña" title="Prioridad Alta">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxYellowEnCampaña" title="Prioridad Media">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxGreenEnCampaña" title="Prioridad Baja">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>*@
-                            </div>
-
-                            <div class="row">
-                                @Html.Partial("P_RedesSociales")
-                                @*<div class="col-lg-3">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <div class="panel-title">
-                                                Progreso de Redes Sociales
-                                            </div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <canvas id="chBarRedesSociales" style="width:50px;height:60px;"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <div class="panel-title">
-                                                Cumplimiento de Redes Sociales
-                                            </div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <h4 class="control-sidebar-subheading">
-                                                Progreso
-
-                                                <span class="pull-right-container">
-                                                    <span class="label label-danger pull-right" id="metaRed"></span>
-                                                </span>
-                                            </h4>
-                                            <div class="progress progress-xxs">
-                                                <div class="progress-bar progress-bar-danger" id="progresoRed">
-
-                                                </div>
-                                            </div>
-                                            Prioridad
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxRedRedes" title="Prioridad Alta">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxYellowRedes" title="Prioridad Media">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                    <div id="boxGreenRedes" title="Prioridad Baja">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>*@
-                            </div>
+                            @Html.Partial("p_Planilla")
 
                         </div>
+
+                        <div class="row">
+                            @Html.Partial("p_Campania")
+
+
+                            @Html.Partial("p_EnCampania")
+
+                        </div>
+
+                        <div class="row">
+                            @Html.Partial("P_RedesSociales")
+
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 
@@ -717,6 +429,6 @@
 
     });
 
-   
+
 
 </script>

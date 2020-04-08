@@ -131,12 +131,12 @@ namespace AdminCampana_2020.Controllers
                         coordinador.NombreMovilizado = m.StrNombre;
                         coordinador.ApellidoPaternoMovilizado = m.StrApellidoPaterno;
                         coordinador.ApellidoMaternoMovilizado = m.StrApellidoMaterno;
-                        coordinador.CalleMovilizado = m.DireccionDomainModel.StrCalle;
-                        coordinador.NumeroInteriorMovilizado = m.DireccionDomainModel.StrNumeroInterior;
-                        coordinador.CodigoPostalMovilizado = m.DireccionDomainModel.ColoniaDomainModel.StrCodigoPostal;
-                        coordinador.TipoAsentamientoMovilizado = m.DireccionDomainModel.ColoniaDomainModel.StrTipoDeAsentamiento;
-                        coordinador.AsentamientoMovilizado = m.DireccionDomainModel.ColoniaDomainModel.StrAsentamiento;
-                        coordinador.TelefonoCelular = m.TelefonoDomainModel.StrNumeroCelular;
+                        coordinador.CalleMovilizado = m.Direccion.StrCalle;
+                        coordinador.NumeroInteriorMovilizado = m.Direccion.StrNumeroInterior;
+                        coordinador.CodigoPostalMovilizado = m.Direccion.ColoniaDomainModel.StrCodigoPostal;
+                        coordinador.TipoAsentamientoMovilizado = m.Direccion.ColoniaDomainModel.StrTipoDeAsentamiento;
+                        coordinador.AsentamientoMovilizado = m.Direccion.ColoniaDomainModel.StrAsentamiento;
+                        coordinador.TelefonoCelular = m.Telefono.StrNumeroCelular;
                         coordinadorDM.Add(coordinador);
                     }
 

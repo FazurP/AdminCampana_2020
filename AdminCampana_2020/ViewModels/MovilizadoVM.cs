@@ -32,9 +32,9 @@ namespace AdminCampana_2020.ViewModels
         public string StrObservaciones { get; set; }
         public int IdUsuario { get; set; }
         public int IdStatus { get; set; }
-        public DireccionVM DireccionVM { get; set; }
-        public TelefonoVM TelefonoVM { get; set; }
-        public StatusVM StatusvM { get; set; }
-        public UsuarioVM UsuarioDomainModel { get; set; }
+        public DireccionVM Direccion { get; set; }
+        public TelefonoVM Telefono { get; set; }
+        public StatusVM Status { get; set; }
+        public UsuarioVM Usuario { get; set; }
     }
 }

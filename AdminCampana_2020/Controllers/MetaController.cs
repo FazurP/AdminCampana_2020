@@ -72,7 +72,7 @@ namespace AdminCampana_2020.Controllers
 
             List<MovilizadoDomainModel> movilizados = movilizadoBusiness.GetAllMovilizados();
             List<MetaDomainModel> metas = ImetaBusiness.GetAllMetas();
-            //List<UsuarioDomainModel> usuarios = usuarioBusiness.GetUsuarios();
+            //List<Usuario> usuarios = usuarioBusiness.GetUsuarios();
 
             if (movilizados != null && metas != null)
             {

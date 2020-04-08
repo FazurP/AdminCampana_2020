@@ -17,8 +17,8 @@ namespace AdminCampana_2020.Domain
         public int IdUsuario { get; set; }
         public int idStatus { get; set; }
 
-        public DireccionDomainModel DireccionDomainModel { get; set; }
-        public TelefonoDomainModel TelefonoDomainModel { get; set; }
+        public DireccionDomainModel Direccion { get; set; }
+        public TelefonoDomainModel Telefono { get; set; }
         public UsuarioDomainModel Usuario { get; set; }
         public StatusDomainModel Status { get; set; }
     }

@@ -47,10 +47,10 @@ namespace AdminCampana_2020.Business
                         movilizado.strApellidoPaterno = personaDM.StrApellidoPaterno;
                         movilizado.strApellidoMaterno = personaDM.StrApellidoMaterno;
                         movilizado.strEmail = personaDM.StrEmail;
-                        movilizado.Direccion.strCalle = personaDM.DireccionDomainModel.StrCalle;
-                        movilizado.Direccion.strNumeroExterior = personaDM.DireccionDomainModel.StrNumeroExterior;
-                        movilizado.Direccion.idColonia = personaDM.DireccionDomainModel.IdColonia;
-                        movilizado.Telefono.strNumeroCelular = personaDM.TelefonoDomainModel.StrNumeroCelular;
+                        movilizado.Direccion.strCalle = personaDM.Direccion.StrCalle;
+                        movilizado.Direccion.strNumeroExterior = personaDM.Direccion.StrNumeroExterior;
+                        movilizado.Direccion.idColonia = personaDM.Direccion.IdColonia;
+                        movilizado.Telefono.strNumeroCelular = personaDM.Telefono.StrNumeroCelular;
 
                         movilizadoRepository.Update(movilizado);
                         resultado = true;
@@ -70,14 +70,14 @@ namespace AdminCampana_2020.Business
                     movilizado.idStatus = personaDM.idStatus;
                     movilizado.Direccion = new Direccion
                     {
-                        strCalle = personaDM.DireccionDomainModel.StrCalle,
-                        strNumeroExterior = personaDM.DireccionDomainModel.StrNumeroExterior,
-                        idColonia = personaDM.DireccionDomainModel.IdColonia
+                        strCalle = personaDM.Direccion.StrCalle,
+                        strNumeroExterior = personaDM.Direccion.StrNumeroExterior,
+                        idColonia = personaDM.Direccion.IdColonia
                         
                     };
                     movilizado.Telefono = new Telefono
                     {
-                        strNumeroCelular = personaDM.TelefonoDomainModel.StrNumeroCelular
+                        strNumeroCelular = personaDM.Telefono.StrNumeroCelular
                     };
                     movilizadoRepository.Insert(movilizado);
                     resultado = true;
@@ -101,7 +101,7 @@ namespace AdminCampana_2020.Business
                     persona.strApellidoMaterno = personaDM.StrApellidoMaterno;
                     persona.strEmail = personaDM.StrEmail;
                     persona.Telefono = new Telefono();
-                    persona.Telefono.strNumeroCelular = personaDM.TelefonoDomainModel.StrNumeroCelular;
+                    persona.Telefono.strNumeroCelular = personaDM.Telefono.StrNumeroCelular;
                     movilizadoRepository.Update(persona);
                     resultado = "Se Actualizo correctamente";
                 }
@@ -123,7 +123,7 @@ namespace AdminCampana_2020.Business
                     movilizado.strApellidoMaterno = movilizadoDM.StrApellidoMaterno;
                     movilizado.strEmail = movilizadoDM.StrEmail;
                     movilizado.Telefono = new Telefono();
-                    movilizado.Telefono.strNumeroCelular = movilizadoDM.TelefonoDomainModel.StrNumeroCelular;
+                    movilizado.Telefono.strNumeroCelular = movilizadoDM.Telefono.StrNumeroCelular;
                     movilizadoRepository.Update(movilizado);
                     resultado = "Se Actualizó correctamente";
                 }
@@ -162,7 +162,7 @@ namespace AdminCampana_2020.Business
 
                 TelefonoDomainModel telefonoDM = new TelefonoDomainModel();
                 telefonoDM.StrNumeroCelular = persona.Telefono.strNumeroCelular;
-                personaDM.TelefonoDomainModel = telefonoDM;
+                personaDM.Telefono = telefonoDM;
                 return personaDM;
             }
             else
@@ -311,11 +311,11 @@ namespace AdminCampana_2020.Business
                 personaDM.StrApellidoPaterno = movilizado.strApellidoPaterno;
                 personaDM.StrApellidoMaterno = movilizado.strApellidoMaterno;
                 personaDM.StrEmail = movilizado.strEmail;
-                personaDM.TelefonoDomainModel = new TelefonoDomainModel
+                personaDM.Telefono = new TelefonoDomainModel
                 {
                     StrNumeroCelular = movilizado.Telefono.strNumeroCelular
                 };
-                personaDM.DireccionDomainModel = new DireccionDomainModel
+                personaDM.Direccion = new DireccionDomainModel
                 {
                     StrCalle = movilizado.Direccion.strCalle,
                     StrNumeroExterior = movilizado.Direccion.strNumeroExterior,
@@ -455,10 +455,10 @@ namespace AdminCampana_2020.Business
             {
                 Expression<Func<Movilizado, bool>> predicado = p => p.strNombre == movilizadoDM.StrNombre &&
                  p.strApellidoPaterno == movilizadoDM.StrApellidoPaterno && p.strApellidoMaterno == movilizadoDM.StrApellidoMaterno &&
-                 p.Telefono.strNumeroCelular == movilizadoDM.TelefonoDomainModel.StrNumeroCelular
-                 && p.Direccion.strCalle == movilizadoDM.DireccionDomainModel.StrCalle
-                 && p.Direccion.strNumeroInterior == movilizadoDM.DireccionDomainModel.StrNumeroInterior
-                 && p.Direccion.idColonia == movilizadoDM.DireccionDomainModel.IdColonia && p.idStatus == (int)EnumStatus.Activo;
+                 p.Telefono.strNumeroCelular == movilizadoDM.Telefono.StrNumeroCelular
+                 && p.Direccion.strCalle == movilizadoDM.Direccion.StrCalle
+                 && p.Direccion.strNumeroInterior == movilizadoDM.Direccion.StrNumeroInterior
+                 && p.Direccion.idColonia == movilizadoDM.Direccion.IdColonia && p.idStatus == (int)EnumStatus.Activo;
                 //retorno false si no encuentra a nadie con esos datos
                 respuesta = movilizadoRepository.Exists(predicado);
             }
